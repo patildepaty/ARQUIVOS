@@ -1,0 +1,6 @@
+Account number: 474620
+
+Host: sql10.freemysqlhosting.net
+UserName: sql10381195
+Senha: MHaExuqUfU
+Schema: sql10381195
