@@ -1,0 +1,58 @@
+select * from itau.clientes where idade_cliente>=18 and idade_cliente<=30 order by nome_cliente;
+select count(*) as Total_clientes from itau.clientes where idade_cliente>=18 and idade_cliente<=30 order by nome_cliente;
+select * from itau.clientes where idade_cliente in(30,40,50) order by nome_cliente;
+
+select min(idade_cliente) from itau.clientes;
+
+select * from itau.clientes where idade.cliente=18;
+
+select * from itau.clientes where idade_cliente = (select min(idade_cliente) from itau.clientes);
+
+select nome_cliente,email_cliente from itau.clientes where nome_cliente="Patricia Gomes";
+
+select nome_cliente,email_cliente from itau.clientes where nome_cliente like "Thiago%";
+
+alter table itau.clientes add endereco varchar(80) not null;
+
+alter table itau.clientes drop endereco; //deleta a coluna
+
+alter table itau.clientes rename column endereco to endereco_cliente;
+
+describe itau.clientes;
+
+alter table itau.clientes add endereco varchar(80) not null;
+
+alter table itau.clientes drop endereco;
+
+alter table itau.clientes rename column endereco to endereco_cliente;
+
+alter table itau.clientes change endereco_cliente endereco_cliente varchar(100) not null;
+
+update itau.clientes set endereco_cliente="Rua Palestina" where codigo_cliente=4;
+
+
+update itau.clientes set endereco_cliente="Atualizar endereço" where endereco_cliente<>"Rua Palestina";
+
+
+select sum(p.Qtd_produto*p.Valor_unit_produto) as Total_Produtos, count(*) as Qtde_produtos,m.Nome_marca
+from itau.produtos as p,
+itau.marca as m
+where p.Cod_marca_produto=m.Cod_marca group by m.Nome_marca;
+
+select m.Nome_marca,p.Qtd_produto*p.Valor_unit_produto as Valor_total_produto,count(m.Nome_marca) as Qtde_por_marca
+from itau.produtos as p,
+itau.marca as m
+where p.Cod_marca_produto=m.Cod_marca
+group by m.Nome_marca
+
+
+
+select f.Nome_Funcionario,f.Data_contratacao_Funcionario,c.Nome_cargo,c.valor_salario
+from itau.cargos as c
+inner join itau.funcionarios as f
+on(f.Cod_Cargo=c.Cod_cargo)
+
+select f.Nome_Funcionario,f.Data_contratacao_Funcionario,c.Nome_cargo,c.valor_salario
+from itau.cargos as c
+left join itau.funcionarios as f
+on(f.Cod_Cargo=c.Cod_cargo) order by f.Nome_Funcionario;
